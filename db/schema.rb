@@ -10,11 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_27_093235) do
+ActiveRecord::Schema.define(version: 2020_08_29_194813) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mappings", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "pri"
+    t.string "question"
+    t.string "teaming_stage"
+    t.integer "appears_day"
+    t.integer "frequency"
+    t.string "question_type"
+    t.string "role"
+    t.boolean "required"
+    t.string "conditions"
+    t.string "mapping"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -40,13 +40,7 @@ class Article extends React.Component {
       <p>{this.props.article.text}</p>
     );
     return (
-      <div
-        style={{
-          margin: "1em",
-          padding: "1em",
-          border: "1px solid #ddd"
-        }}
-      >
+      <div>
         {title}
         {text}
         <button onClick={() => this.handleEdit()}>

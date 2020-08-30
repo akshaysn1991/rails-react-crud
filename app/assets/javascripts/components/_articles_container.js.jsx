@@ -16,7 +16,7 @@ class ArticlesContainer extends React.Component {
       article: { title: title, text: text }
     });
 
-    fetch("http://localhost:3000/api/v1/articles", {
+    fetch("/api/v1/articles", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -38,7 +38,7 @@ class ArticlesContainer extends React.Component {
   }
 
   handleDelete(id) {
-    fetch(`http://localhost:3000/api/v1/articles/${id}`, {
+    fetch(`/api/v1/articles/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
@@ -57,7 +57,7 @@ class ArticlesContainer extends React.Component {
   }
 
   handleUpdate(article) {
-    fetch(`http://localhost:3000/api/v1/articles/${article.id}`, {
+    fetch(`/api/v1/articles/${article.id}`, {
       method: "PUT",
       body: JSON.stringify({ article: article }),
       headers: {
