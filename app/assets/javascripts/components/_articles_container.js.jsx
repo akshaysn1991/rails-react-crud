@@ -2,6 +2,7 @@ class ArticlesContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showComponent: false,
       articles: []
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -9,11 +10,16 @@ class ArticlesContainer extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.updateArticle = this.updateArticle.bind(this);
+    this._onButtonClick = this._onButtonClick.bind(this);
   }
 
   handleFormSubmit(title, text) {
     let body = JSON.stringify({
       article: { title: title, text: text }
+    });
+
+    this.setState({
+      showComponent: false
     });
 
     fetch("/api/v1/articles", {
@@ -85,18 +91,37 @@ class ArticlesContainer extends React.Component {
         this.setState({ articles: data });
       });
   }
+
+   
+ _onButtonClick() {
+    this.setState({
+      showComponent: true,
+    });
+  }
+
   render() {
     return (
       <div>
         <h2>Add new article</h2>
-        <NewArticle handleFormSubmit={this.handleFormSubmit} />
-        <h2>All articles</h2>
-        <AllArticles
+
+   
+
+    <button onClick={this._onButtonClick}>Button</button>
+        {this.state.showComponent ?
+           <NewArticle handleFormSubmit={this.handleFormSubmit} /> 
+           :
+
+           (
+            <AllArticles
           articles={this.state.articles}
           handleDelete={this.handleDelete}
           handleUpdate={this.handleUpdate}
         />
+        )
+        }
+       
       </div>
     );
   }
 }
+

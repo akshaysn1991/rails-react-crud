@@ -11,9 +11,9 @@ class QuestionsContainer extends React.Component {
     this.updateQuestion = this.updateQuestion.bind(this);
   }
 
-  handleFormSubmit(pri, question) {
+  handleFormSubmit(pri, question, teaming_stage, appears_day, frequency, question_type, role, required, conditions, mapping) {
     let body = JSON.stringify({
-      question: { pri: pri, question: question }
+      question: { pri: pri, question: question, teaming_stage:teaming_stage, appears_day:appears_day, frequency:frequency, question_type:question_type, role:role, required:required, conditions:conditions, mapping:mapping}
     });
 
     fetch("/api/v1/questions", {
@@ -27,6 +27,7 @@ class QuestionsContainer extends React.Component {
         return response.json();
       })
       .then(question => {
+      alert("New Question Added");
         this.addNewQuestion(question);
       });
   }
@@ -44,7 +45,7 @@ class QuestionsContainer extends React.Component {
         "Content-Type": "application/json"
       }
     }).then(response => {
-      console.log("Question was deleted!");
+      alert("Question was deleted!");
       this.deleteQuestion(id);
     });
   }
@@ -64,6 +65,7 @@ class QuestionsContainer extends React.Component {
         "Content-Type": "application/json"
       }
     }).then(response => {
+      alert("Question was updated");
       this.updateQuestion(question);
     });
   }
@@ -88,9 +90,9 @@ class QuestionsContainer extends React.Component {
   render() {
     return (
       <div>
-        <h2>Add new question</h2>
+        <h2>Add New Question</h2>
         <NewQuestion handleFormSubmit={this.handleFormSubmit} />
-        <h2>All Quiestions</h2>
+        <h2>All Questions</h2>
         <AllQuestions
           questions={this.state.questions}
           handleDelete={this.handleDelete}

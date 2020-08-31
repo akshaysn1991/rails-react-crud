@@ -21,7 +21,6 @@ class Api::V1::QuestionsController < ApplicationController
 	private
 	
 	def question_params
-	  params.require(:question).permit(:id, :pri, :question, :role, :mapping)
+	  params.require(:question).permit(:id, :pri, :question, :teaming_stage, :appears_day, :frequency, :question_type, :role, :required, :conditions, :mapping)
 	end
 end
-

@@ -1,26 +1,28 @@
-const NewArticle = props => {
+const EditArticle = props => {
   let formFields = {};
 
   return (
     <form
       
       onSubmit={e => {
-        props.handleFormSubmit(formFields.title.value, formFields.text.value);
+        article_obj = {title: formFields.title.value, text: formFields.text.value, id: this.props.article_id}
+        props.handleUpdate(article_obj);
         e.target.reset();
         e.preventDefault();
       }}
     >
       <input
+        type="string"
         ref={input => (formFields.title = input)}
-        placeholder="Enter the title"
+        defaultValue={props.title}
       />
       <input
+        type="string"
         ref={input => (formFields.text = input)}
-        placeholder="Enter the text"
+        defaultValue={props.text}
       />
       <button>Submit</button>
     </form>
   );
 };
-
 

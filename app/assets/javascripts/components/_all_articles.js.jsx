@@ -12,6 +12,37 @@ class AllArticles extends React.Component {
       );
     });
 
-    return <div>{articles}</div>;
+    return <div>
+
+
+
+    <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Text</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+         
+
+
+          {articles.map((name, index) => (
+              <tr key={index}>
+             { console.log(name)}
+                <td>{name.title}</td>
+                <td>{name.text}</td>
+              </tr>
+            ))}
+
+             </tbody>
+        </table>
+
+    
+    </div>;
+
   }
 }

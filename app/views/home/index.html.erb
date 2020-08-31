@@ -1,14 +1,34 @@
 
 
+
+<div class='container'>
+<center>
 <%= flash[:notice] %>
 
-<%= link_to "Click here to view Imported Data", home_view_data_path %>
-
-<div>
-  <h4>Import CSV Data!</h4>
+  <h4 class='import_csv'>Import CSV Data!</h4>
   <%= form_tag import_questions_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Import CSV" %>
+    <%= file_field_tag :file,  class: 'csv_file btn btn-default' %>
+    <br />
+    <%= submit_tag "Import CSV", class: 'btn btn-info' %>	
   <% end %>
+  
+ <br>
+  <p class='data_view'><%= link_to "Click here to view Imported Data", home_view_data_path %> </p>
+  </center>
 </div>
+
+<style type="text/css">
+	input{
+		width: 500px !important;
+	}
+	.csv_file{
+		margin-right: 25px;
+	}
+	.import_csv{
+		margin-right: 320px;
+	}
+	.data_view{
+		margin-right: 265px;
+	}
+</style>
 

@@ -16,7 +16,7 @@ class Question < ApplicationRecord
       roles << Role.new(name: row['Role'])
     end
     Question.import questions, recursive: true
-    Mapping.import mappings, recursive: true
-    Role.import roles, recursive:true
+    Mapping.import mappings.uniq {|m| m.name}, recursive: true
+    Role.import roles.uniq {|m| m.name}, recursive:true
    end
 end
